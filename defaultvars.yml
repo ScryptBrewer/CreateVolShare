@@ -1,0 +1,9 @@
+---
+# Default Values for the volume configuration. 
+encrypt: "True"
+vol_export_policy: "default"
+vol_space_guarantee: "none"
+vol_snapshot_pct: 10
+vol_qospolicy: "value"
+share_properties: "browsable,oplocks,access-based-enumeration"
+state: "present"
