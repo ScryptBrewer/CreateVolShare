@@ -10,7 +10,7 @@ Create a new netapp encrypted volume, share, qos, set permissions on share, and 
 ## Required settings:
    - On NetApp Cluster:
      - Create a dediacated admin account ssh,ontapi,console
-     - "set -priv advanced; system services web modify -http-enabled true" command set on storage
+     - ***set -priv advanced; system services web modify -http-enabled true*** command set on storage
 
 ## Required Files:
    - CreateVolumeShare
