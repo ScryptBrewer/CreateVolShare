@@ -25,7 +25,7 @@
       - "'vserver', 'security', 'file-directory', 'ntfs', 'delete', '-vserver', '{{ svm }}', '-ntfs-sd', 'pol-{{ volume_share }}'"
 
   vars_files:
-    - ../secret.yml
+    - secret.yml
     - uservars.yml
     - defaultvars.yml
 
@@ -35,6 +35,10 @@
         msg: "Ansible version is {{ ansible_version.full }}. Minimum version of Ansible required is is {{ minimum_ansible_version }}"
       when: ansible_version.full is version(minimum_ansible_version, '<')
 
+    - name: Install required Netapp-Lib 
+      pip: 
+        name: Netapp-Lib
+      
     - name: Create or remove FlexVol {{ volume_share }} with QoS adaptive
       na_ontap_volume:
         state: "{{ state }}"
