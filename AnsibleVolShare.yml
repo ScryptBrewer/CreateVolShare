@@ -71,8 +71,8 @@
         password: "{{ netapp_password }}"
 
     - name: Remove Eveyone from share Permissions
-      tags: ['harden','cifs_share']
       na_ontap_cifs_acl:
+        tags: ['harden','cifs_share']
         state: absent
         share_name: "{{ volume_share }}"
         user_or_group: Everyone
@@ -84,8 +84,8 @@
       when: state == "present"
 
     - name: Add explicit group to share
-      tags: ['harden', 'no-admin-access','cifs_share']
       na_ontap_cifs_acl:
+        tags: ['harden', 'no-admin-access','cifs_share']
         state: present
         share_name: "{{ volume_share }}"
         user_or_group: "{{ userperms['useradmin']['acct'] }}"
@@ -97,8 +97,8 @@
       when: state == "present"
 
     - name: Add explicit group to share
-      tags: ['harden','cifs_share']    
       na_ontap_cifs_acl:
+        tags: ['harden','cifs_share']
         state: present
         share_name: "{{ volume_share }}"
         user_or_group: "{{ userperms['usergroup']['acct'] }}"
@@ -110,8 +110,8 @@
       when: state == "present"
 
     - name: Set NTFS Security on Volumes
-      tags: ['harden']
       na_ontap_command:
+        tags: ['harden']
         command: "{{ item }}"
         privilege: 'admin'
         return_dict: True
@@ -122,8 +122,8 @@
       when: state == "present"
 
     - name: Clean-up NTFS Security on Volumes
-      tags: ['harden']
       na_ontap_command:
+        tags: ['harden']
         command: "{{ item }}"
         privilege: 'admin'
         return_dict: True
