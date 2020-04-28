@@ -35,7 +35,7 @@
         msg: "Ansible version is {{ ansible_version.full }}. Minimum version of Ansible required is is {{ minimum_ansible_version }}"
       when: ansible_version.full is version(minimum_ansible_version, '<')
 
-    - name: Install required Netapp-Lib 
+    - name: Install required Netapp-Lib if not installed 
       pip: 
         name: Netapp-Lib
       
@@ -60,6 +60,7 @@
 
     - name: Create CIFS share
       na_ontap_cifs:
+        tags: ['cifs_share']
         state: "{{ state }}"
         share_name: "{{ volume_share }}"
         path: "/{{ volume_share }}"
@@ -70,7 +71,7 @@
         password: "{{ netapp_password }}"
 
     - name: Remove Eveyone from share Permissions
-      tags: ['harden']
+      tags: ['harden','cifs_share']
       na_ontap_cifs_acl:
         state: absent
         share_name: "{{ volume_share }}"
@@ -83,12 +84,12 @@
       when: state == "present"
 
     - name: Add explicit group to share
-      tags: ['harden', 'no-admin-access']
+      tags: ['harden', 'no-admin-access','cifs_share']
       na_ontap_cifs_acl:
         state: present
         share_name: "{{ volume_share }}"
-        user_or_group: "{{ admin_acct }}"
-        permission: full_control
+        user_or_group: '{{ userperms['useradmin']['acct'] }}'
+        permission: '{{ userperms['useradmin']['share_permissions'] }}'
         vserver: "{{ svm }}"
         hostname: "{{ netapp_hostname }}"
         username: "{{ netapp_username }}"
@@ -96,12 +97,12 @@
       when: state == "present"
 
     - name: Add explicit group to share
-      tags: ['harden']    
+      tags: ['harden','cifs_share']    
       na_ontap_cifs_acl:
         state: present
         share_name: "{{ volume_share }}"
-        user_or_group: "{{ user_acct }}"
-        permission: "{{ user_permission }}"
+        user_or_group: "{{ userperms['usergroup']['acct'] }}"
+        permission: "{{ userperms['usergroup']['share_permissions'] }}"
         vserver: "{{ svm }}"
         hostname: "{{ netapp_hostname }}"
         username: "{{ netapp_username }}"
@@ -117,7 +118,6 @@
         hostname: "{{ netapp_hostname }}"
         username: "{{ netapp_username }}"
         password: "{{ netapp_password }}"
-
       with_items: "{{ hardenntfs }}"
       when: state == "present"
 
