@@ -13,16 +13,16 @@
     hardenntfs: 
       - "vserver,security,file-directory,policy,create,-vserver,{{ svm }},-policy-name,pol-{{ volume_share }}"
       - "vserver,security,file-directory,ntfs,create,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }},-owner,{{ userperms['storageadmin'].acct }}"
-      - "vserver,security,file-directory,ntfs,dacl,add,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }},-access-type,allow,-account,{{ userperms['storageadmin']['acct'] }}, -apply-to,'this-folder,sub-folders,files',-advanced-rights,{{ userperms['storageadmin']['ntfs_rights'] }}"
-      - "vserver,security,file-directory,ntfs,dacl,add,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }},-access-type,allow,-account,{{ userperms['useradmin']['acct'] }},-apply-to,'this-folder,sub-folders,files',-advanced-rights,{{ userperms['useradmin']['ntfs_rights'] }}"
-      - "vserver,security,file-directory,ntfs,dacl,add,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }},-access-type,allow,-account,{{ userperms['usergroup']['acct'] }},-rights,{{ userperms['usergroup']['ntfs_rights'] }},-apply-to,this-folder,sub-folders,files'"
-      - "vserver,security,file-directory,ntfs,dacl,remove,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }},-access-type,allow,-account',BUILTIN\\Users"
+      - "vserver,security,file-directory,ntfs,dacl,add,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }},-access-type,allow,-account,{{ userperms['storageadmin']['acct'] }}, -apply-to,*,-advanced-rights,{{ userperms['storageadmin']['ntfs_rights'] }}"
+      - "vserver,security,file-directory,ntfs,dacl,add,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }},-access-type,allow,-account,{{ userperms['useradmin']['acct'] }},-apply-to,*,-advanced-rights,{{ userperms['useradmin']['ntfs_rights'] }}"
+      - "vserver,security,file-directory,ntfs,dacl,add,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }},-access-type,allow,-account,{{ userperms['usergroup']['acct'] }},-rights,{{ userperms['usergroup']['ntfs_rights'] }},-apply-to,*"
+      - "vserver,security,file-directory,ntfs,dacl,remove,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }},-access-type,allow,-account,BUILTIN\\Users"
       - "vserver,security,file-directory,policy,task,add,-vserver,{{ svm }},-policy-name,pol-{{ volume_share }},-path,/{{ volume_share }},-ntfs-sd,pol-{{ volume_share }},-ntfs-mode,replace"
       - "vserver,security,file-directory,apply,-vserver,{{ svm }},-policy-name,pol-{{ volume_share }}"
 
     clean_up_harden:
-      - "'vserver', 'security', 'file-directory', 'policy', 'delete', '-vserver', '{{ svm }}', '-policy-name', 'pol-{{ volume_share }}'"
-      - "'vserver', 'security', 'file-directory', 'ntfs', 'delete', '-vserver', '{{ svm }}', '-ntfs-sd', 'pol-{{ volume_share }}'"
+      - "vserver,security,file-directory,policy,delete,-vserver,{{ svm }},-policy-name,pol-{{ volume_share }}"
+      - "vserver,security,file-directory,ntfs,delete,-vserver,{{ svm }},-ntfs-sd,pol-{{ volume_share }}"
 
   vars_files:
     - secret.yml
