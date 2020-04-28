@@ -1,10 +1,16 @@
 ---
 # Default Values for the volume configuration. 
 encrypt: "True"
+
 vol_export_policy: "default"
 vol_space_guarantee: "none"
 vol_snapshot_pct: 10
+
+# Accepts extreme, performance, or value by default
 vol_qospolicy: "value"
+
+# Share defaults include browsable, oplocks
 share_properties: "browsable,oplocks,access-based-enumeration"
+
 # Present creates absent deletes
 state: "present"
