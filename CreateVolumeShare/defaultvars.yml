@@ -6,4 +6,5 @@ vol_space_guarantee: "none"
 vol_snapshot_pct: 10
 vol_qospolicy: "value"
 share_properties: "browsable,oplocks,access-based-enumeration"
+# Present creates absent deletes
 state: "present"

@@ -1,0 +1,13 @@
+---
+# User varibles per config
+svm: "VirtualServer01"
+volume_share: "VolumeAndShareName"
+aggr: "AggreagateName"
+vol_gb_size: 10
+
+storageadmin_acct: "BUILTIN\\Administrators"
+# Modify the following to the correct user groups if using the Harden Flag
+useradmin_acct: "AD-UserAdminGroup"
+# If using the Harden flag its recomended this var be updated to a targeted ad user group 
+usergroup_acct: "BUILTIN\\Users"
+
