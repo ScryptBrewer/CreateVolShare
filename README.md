@@ -2,21 +2,21 @@
  
 Create a new netapp encrypted volume, share, qos, set permissions on share, and NTFS based on AD group. 
 
-## Requirments:
+## Requirements:
    -  ansible <2.8
-   -  dataontap <9.6
+   -  DATAONTAP <9.6
    -  python netapp-lib
     
 ## Required settings:
    - On NetApp Cluster:
-     - Create a dediacated admin account ssh,ontapi,console
+     - Create a dedicated admin account ssh,ontapi,console
      - ***set -priv advanced; system services web modify -http-enabled true*** command set on storage
 
 ## File Descriptions:
    - AnsibleVolShare.yml    - Main ansible playbook no modifications required
-   - uservars.yml           - Varibles that will need updating with each execution
-   - defaultvars.yml        - Default Varibles for volume creation and setup
-   - secret.yml               - contians host user credentials for setup of config (optional can use extra vars or setup propmpt in ansible play)
+   - uservars.yml           - Variables that will need updating with each execution
+   - defaultvars.yml        - Default Variables for volume creation and setup
+   - secret.yml               - contains host user credentials for setup of config (optional can use extra vars or setup prompt in ansible play)
 
 ## Basic setup
    - Install prerequisites
@@ -26,7 +26,7 @@ Create a new netapp encrypted volume, share, qos, set permissions on share, and 
    - Update secret.yml, uservars.yml, defaultvars.yml
 
 
-## Usage exaples:
+## Usage examples:
 Basic play with all vars in var files
 
 ***ansible-playbook AnsibleVolShare.yml***
@@ -44,10 +44,10 @@ To skip using the NTFS and share hardening use the following
 ***ansible-playbook AnsibleVolShare.yml --extra-vars="svm='svm01',volume_share='vol02',aggr='agggr1',vol_gb_size=50,netapp_hostname='Cluster02',netapp_username='Ansible-admin',netapp_password='Ansibe-password',useradmin_acct='AD-UserAdminGroup',usergroup_acct='ADUSERSGRP01',vol_qospolicy='extreme'"***
 
 
-Note: the NVE encryption flag has been set to true by default. set encryopt="false" if this is not the desired behavor.
+Note: the NVE encryption flag has been set to true by default. set encrypt="false" if this is not the desired behavior.
 
-If you run into issues with ansilbe use the -vvv flag to show full output 
+If you run into issues with ansible use the -vvv flag to show full output 
 The top issues in ansible are:
    - syntax errors spaces not tabs!
    - module installation or configuration of storage
-   - version compatiblity issues older version of ontap work with some of the features not all. 
+   - version compatibility issues older versions of ontap work with some of the features not all. 
