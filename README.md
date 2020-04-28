@@ -1,4 +1,4 @@
-# Ansible_NTAP_Automation
+# Ansible NetApp Automation
  
 Create a new netapp encrypted volume, share, qos, set permissions on share, and NTFS based on AD group. 
 
@@ -30,19 +30,19 @@ Create a new netapp encrypted volume, share, qos, set permissions on share, and 
 ## Usage exaples:
 Basic play with all vars in var files
 
-*ansible-playbook AnsibleVolShare.yml*
+***ansible-playbook AnsibleVolShare.yml***
 
 Remove volume and other things from the play above
 
-*ansible-playbook AnsibleVolShare.yml --extra-vars="state=absent"*
+***ansible-playbook AnsibleVolShare.yml --extra-vars="state=absent"***
 
 To skip using the NTFS and share hardening use the following
 
-*ansible-playbook AnsibleVolShare.yml --skip-tags=harden*
+***ansible-playbook AnsibleVolShare.yml --skip-tags=harden***
 
 
 ##### Multiple varibles can be combined to execute a command vs updating each time the play is used.
-*ansible-playbook AnsibleVolShare.yml --extra-vars="svm='svm01',volume_share='vol02',aggr='agggr1',vol_gb_size=50,netapp_hostname='Cluster02',netapp_username='Ansible-admin',netapp_password='Ansibe-password',useradmin_acct='AD-UserAdminGroup',usergroup_acct='ADUSERSGRP01',vol_qospolicy='extreme'"*
+***ansible-playbook AnsibleVolShare.yml --extra-vars="svm='svm01',volume_share='vol02',aggr='agggr1',vol_gb_size=50,netapp_hostname='Cluster02',netapp_username='Ansible-admin',netapp_password='Ansibe-password',useradmin_acct='AD-UserAdminGroup',usergroup_acct='ADUSERSGRP01',vol_qospolicy='extreme'"***
 
 
 Note: the NVE encryption flag has been set to true by default. set encryopt="false" if this is not the desired behavor.
