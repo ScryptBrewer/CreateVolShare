@@ -5,9 +5,12 @@ volume_share: "VolumeAndShareName"
 aggr: "AggreagateName"
 vol_gb_size: 10
 
+# If Storage admins use alternate group for access it goes here
 storageadmin_acct: "BUILTIN\\Administrators"
-# Modify the following to the correct user groups if using the Harden Flag
+
+# This user group must be update to Adminisrators if not used for user admin of permissions on share
 useradmin_acct: "AD-UserAdminGroup"
+
 # If using the Harden flag its recomended this var be updated to a targeted ad user group 
 usergroup_acct: "BUILTIN\\Users"
 
