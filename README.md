@@ -5,7 +5,6 @@ Create a new netapp encrypted volume, share, qos, set permissions on share, and 
 ## Requirements:
    -  ansible <2.8
    -  DATAONTAP <9.6
-   -  python netapp-lib
     
 ## Required settings:
    - On NetApp Cluster:
