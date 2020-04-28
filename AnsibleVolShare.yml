@@ -88,8 +88,8 @@
       na_ontap_cifs_acl:
         state: present
         share_name: "{{ volume_share }}"
-        user_or_group: '{{ userperms['useradmin']['acct'] }}'
-        permission: '{{ userperms['useradmin']['share_permissions'] }}'
+        user_or_group: "{{ userperms['useradmin']['acct'] }}"
+        permission: "{{ userperms['useradmin']['share_permissions'] }}"
         vserver: "{{ svm }}"
         hostname: "{{ netapp_hostname }}"
         username: "{{ netapp_username }}"
