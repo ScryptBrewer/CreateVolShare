@@ -13,10 +13,9 @@ Create a new netapp encrypted volume, share, qos, set permissions on share, and 
      - ***set -priv advanced; system services web modify -http-enabled true*** command set on storage
 
 ## Required Files:
-   - CreateVolumeShare
-     - AnsibleVolShare.yml    - Main ansible playbook no modifications required
-     - uservars.yml           - Varibles that will need updating with each execution
-     - defaultvars.yml        - Default Varibles for volume creation and setup
+   - AnsibleVolShare.yml    - Main ansible playbook no modifications required
+   - uservars.yml           - Varibles that will need updating with each execution
+   - defaultvars.yml        - Default Varibles for volume creation and setup
    - secret.yml               - contians host user credentials for setup of config (optional can use extra vars or setup propmpt in ansible play)
 
 ## Basic setup
