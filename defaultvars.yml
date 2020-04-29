@@ -7,7 +7,7 @@ vol_space_guarantee: "none"
 vol_snapshot_pct: 10
 vol_security_style: "ntfs"
 
-# Accepts extreme, performance, or value by default
+# Accepts extreme, performance, value, or none
 vol_qospolicy: "extreme"
 
 # Share defaults include browsable, oplocks
