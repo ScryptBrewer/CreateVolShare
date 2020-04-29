@@ -52,6 +52,7 @@
         policy: "{{ vol_export_policy }}"
         percent_snapshot_space: "{{ vol_snapshot_pct}}"
         qos_adaptive_policy_group: "{{ vol_qospolicy }}"
+        volume_security_style: "{{ vol_security_style }}"
         vserver: "{{ svm }}"
         wait_for_completion: True
         hostname: "{{ netapp_hostname }}"
