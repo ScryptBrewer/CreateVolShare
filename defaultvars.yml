@@ -8,7 +8,7 @@ vol_snapshot_pct: 10
 vol_security_style: "ntfs"
 
 # Accepts extreme, performance, or value by default
-vol_qospolicy: "value"
+vol_qospolicy: "extreme"
 
 # Share defaults include browsable, oplocks
 share_properties: "browsable,oplocks,access-based-enumeration"
